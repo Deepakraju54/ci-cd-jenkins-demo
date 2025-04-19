@@ -9,7 +9,7 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Build using npm') {
             steps {
                 sh 'npm install'
             }
