@@ -1,0 +1,11 @@
+{
+  "name": "ci-cd-jenkins-demo",
+  "version": "1.0.0",
+  "description": "A simple Node.js app for CI/CD demo using Jenkins",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "author": "Your Name",
+  "license": "ISC"
+}
