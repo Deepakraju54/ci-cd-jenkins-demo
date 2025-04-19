@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -16,17 +17,18 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                script {
-                    sh 'docker build -t node-ci-cd-demo .'
-                }
+                sh 'docker build -t node-ci-cd-demo .'
             }
         }
 
-        stage('Post Build') {
+        stage('Push to Docker Hub') {
             steps {
-                echo 'Docker image built successfully!'
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh 'echo $PASSWORD | docker login -u $USERNAME --password-stdin'
+                    sh 'docker tag node-ci-cd-demo $USERNAME/node-ci-cd-demo:v1'
+                    sh 'docker push $USERNAME/node-ci-cd-demo:v1'
+                }
             }
         }
     }
 }
-
