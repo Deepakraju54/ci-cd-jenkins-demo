@@ -1,6 +1,9 @@
-
 pipeline {
     agent any
+
+    tools {
+        nodejs 'Node 18' // ✅ This must go here — outside "stages"
+    }
 
     stages {
         stage('Clone') {
@@ -8,9 +11,6 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Deepakraju54/ci-cd-jenkins-demo.git'
             }
         }
-    tools {
-            nodejs 'Node 18' // This name must match the name you gave in Jenkins Global Tool Config
-    }
 
         stage('Build using npm') {
             steps {
