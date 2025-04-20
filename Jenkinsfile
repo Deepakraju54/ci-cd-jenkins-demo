@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'Node 18' // ✅ This must go here — outside "stages"
+        nodejs 'Node 18.0.0' // ✅ This must go here — outside "stages"
     }
 
     stages {
